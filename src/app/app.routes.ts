@@ -13,7 +13,7 @@ import { authGuard } from './core/guards/auth-guard';
 import { PostDetailsComponent } from './shared/components/post-details/post-details.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: "feed", pathMatch: "full" },
+  { path: '', redirectTo: "login", pathMatch: "full" },
   {
     path: "", component: AuthComponent,
     children: [

@@ -1,0 +1,21 @@
+<div class="w-full lg:w-[90%]  grid lg:grid-cols-12 mx-auto gap-5 ">
+  <!-- LEFT SIDEBAR -->
+  <div class="lg:col-start-1 lg:col-end-4 fixed top-26 w-72">
+    <app-left-side></app-left-side>
+  </div>
+  <!-- MAIN CONTENT -->
+  <div class="lg:col-start-4 lg:col-end-10 ">
+
+    <app-create-post (postCreated)="refrashPosts($event)"></app-create-post>
+
+    @for (post of allposts; track post._id) {
+    <app-card-post [displaybtn]="false" (postDeleted)="refrashPosts($event)" (postShared)="refrashPosts($event)"
+      [post]="post"></app-card-post>
+    }
+  </div>
+
+  <!-- RIGHT SIDEBAR -->
+  <div class="lg:col-start-10 lg:col-end-13 fixed top-26 right-25 w-80 ">
+    <app-right-side></app-right-side>
+  </div>
+</div>

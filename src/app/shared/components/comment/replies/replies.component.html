@@ -1,0 +1,30 @@
+<div class="ml-10 mt-2 space-y-3 border-l-2 border-gray-100 pl-4">
+  @for (reply of repliesList; track reply._id) {
+  <div class="flex gap-2 items-start">
+    <img title="img" class="w-6 h-6 rounded-full object-cover mt-1" [src]="reply?.commentCreator?.photo">
+
+    <div class="flex flex-col">
+      <div class="bg-gray-100 px-3 py-1.5 rounded-2xl">
+        <h5 class="text-[12px] font-bold text-gray-900">{{reply?.commentCreator?.name}}</h5>
+        <p class="text-[14px] text-gray-800 leading-tight">{{reply?.content}}</p>
+
+        @if (reply.image) {
+        <div class="mt-2">
+          <img [src]="reply.image" alt="reply image"
+            class="max-w-50 max-h-50 rounded-lg object-contain border border-gray-200">
+        </div>
+        }
+      </div>
+
+      <div class="flex items-center gap-3 px-2 mt-0.5 text-[11px] font-bold text-gray-500">
+        <span class="font-normal">{{reply.createdAt | date:'shortTime'}}</span>
+        <button class="hover:underline">Like</button>
+      </div>
+    </div>
+  </div>
+  }
+
+  @if (isLoading) {
+  <p class="text-xs text-gray-400">Loading replies...</p>
+  }
+</div>

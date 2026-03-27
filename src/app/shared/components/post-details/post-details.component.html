@@ -1,0 +1,7 @@
+@if (postDetails) {
+<app-card-post [displaybtn]="true" [post]="postDetails"></app-card-post>
+} @else {
+<div class="flex justify-center py-10">
+  <p>Loading post details...</p>
+</div>
+}

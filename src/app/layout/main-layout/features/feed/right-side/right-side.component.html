@@ -1,0 +1,50 @@
+<aside>
+  <div class="bg-white rounded-xl shadow-sm p-4">
+    <div class="flex justify-between items-center mb-3">
+      <h3 class="font-bold text-[17px] text-gray-900">Suggested Friends</h3>
+    </div>
+
+    <div class="relative mb-4">
+      <span class="absolute inset-y-0 left-3 flex items-center text-gray-500">
+        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+      </span>
+      <input type="text" placeholder="Search friends" [(ngModel)]="inputData"
+        class="w-full bg-gray-100 rounded-full py-2 pl-9 pr-4 text-[14px] placeholder-gray-500 focus:bg-gray-200 focus:outline-none transition-colors" />
+    </div>
+
+    <div class="space-y-4 h-79 overflow-y-scroll">
+
+      @for (follower of follwerList | searchFollower :inputData ; track follower._id) {
+      <div class="flex items-center justify-between group">
+        <div class="flex items-center gap-3 cursor-pointer">
+          <div class="relative">
+            <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden border border-gray-100">
+              @if (follower.photo) {
+              <img [src]="follower.photo" alt="{{ follower.name }}" class="w-full h-full object-cover" />
+              } @else {
+              <i class="fa-solid fa-user text-gray-400 mt-3 ml-3 text-xl"></i>
+              }
+            </div>
+          </div>
+          <div>
+            <p class="text-[15px] font-semibold text-gray-900 hover:underline">{{ follower.name }}</p>
+            <p class="text-[13px] text-gray-500">{{ follower.mutualFollowersCount }} mutual friends</p>
+          </div>
+        </div>
+        <button
+          class="px-4 py-1.5 bg-blue-50 text-blue-600 font-semibold text-[14px] rounded-lg hover:bg-blue-100 transition-colors">
+          Follow
+        </button>
+      </div>
+      }
+
+
+
+    </div>
+
+    <button
+      class="w-full mt-4 py-2 text-[15px] text-blue-600 font-medium hover:bg-gray-50 rounded-lg transition-colors">
+      See all
+    </button>
+  </div>
+</aside>

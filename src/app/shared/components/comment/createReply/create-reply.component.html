@@ -1,0 +1,33 @@
+<div class="flex gap-2 items-start mt-2 ml-10">
+  <img title="img" class="w-6 h-6 rounded-full object-cover" [src]="user.photo || '/images/route.png'">
+
+  <div class="flex-1 bg-gray-100 rounded-2xl px-3 py-2 shadow-sm">
+    @if(imgPath) {
+    <div class="relative mb-2 w-fit">
+      <img title="preview" [src]="imgPath" class="w-20 h-20 object-cover rounded-lg">
+      <button title="btn" type="button" (click)="removeImg()"
+        class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-2xs">
+        <i class="fa-solid fa-x"></i>
+      </button>
+    </div>
+    }
+
+    <textarea [(ngModel)]="replyContent" placeholder="Write a reply..."
+      class="w-full bg-transparent border-none focus:ring-0 text-[14px] resize-none p-0 min-h-5"></textarea>
+
+    <div class="flex items-center justify-between mt-1">
+      <div class="flex gap-2 text-gray-500 text-sm">
+        <i class="fa-regular fa-face-smile cursor-pointer hover:text-gray-700"></i>
+
+        <label for="reply-image" class="cursor-pointer hover:text-gray-700">
+          <i class="fa-solid fa-camera"></i>
+        </label>
+        <input type="file" id="reply-image" class="hidden" accept="image/*" (change)="uploadFile($event)" #imageInput>
+      </div>
+
+      <button title="btn" (click)="sendReply()" [disabled]="!replyContent && !imgfile" class="text-blue-600">
+        <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
